@@ -2,7 +2,6 @@
 eDataSource is currently looking for 10-14 freelance developers to work on an immediate receipt parsing project.
 ________________
 
-##Jobs
 ####Java Developer: HTML and Text Email Parser Development
 This project involves developing standalone Java-based text parsers. 
 
@@ -15,4 +14,4 @@ Strong CSS selectors
 Strong RegEx knowledge
 HTML knowledge
 
-[Apply](https://www.upwork.com/jobs/Java-Developer-HTML-and-Text-Email-Parser-Development_~~99a0b940f2f77db5)
+[Apply Here](https://www.upwork.com/jobs/Java-Developer-HTML-and-Text-Email-Parser-Development_~~99a0b940f2f77db5)
