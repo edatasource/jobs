@@ -8,11 +8,12 @@ This project involves developing standalone Java-based text parsers.
 These parsers will parse HTML and text-based email receipts. This project is well-defined and sample input will be provided for each email format needing parsed. The developer is responsible for implementing the necessary business logic in order to parse specific fields from the email text; as well as implementing the JUnit test to validate the data is parsed correctly.
 
 Key Skills:
-Java 7+
-String manipulation skills
-Strong CSS selectors
-Strong RegEx knowledge
-HTML knowledge
+
+- Java 7+
+- String manipulation skills
+- Strong CSS selectors
+- Strong RegEx knowledge
+- HTML knowledge
 
 Steps to Apply:
 
