@@ -14,4 +14,6 @@ Strong CSS selectors
 Strong RegEx knowledge
 HTML knowledge
 
-[Apply Here](https://www.upwork.com/jobs/Java-Developer-HTML-and-Text-Email-Parser-Development_~~99a0b940f2f77db5)
+Steps to Apply:
+1. [Apply on upwork.com](https://www.upwork.com/jobs/Java-Developer-HTML-and-Text-Email-Parser-Development_~~99a0b940f2f77db5)
+2. We will contact you with directions for completing the dev exercise (1hr paid)
