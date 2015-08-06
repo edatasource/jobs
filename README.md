@@ -21,7 +21,7 @@ These parsers will parse HTML and text-based email receipts. This project is wel
 2. We will contact you with directions for completing the dev exercise (1hr paid). See below
 3. Final decisions will be made the week of Aug. 10th
 
-##### Programming Problem
+#### Programming Problem
 ###### Prerequisites
 - Knowledge of the Java programming language
 - Java 8 JDK installed
