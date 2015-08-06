@@ -25,6 +25,7 @@ These parsers will parse HTML and text-based email receipts. This project is wel
 ###### Prerequisites
 - Knowledge of the Java programming language
 - Java 8 JDK installed
+- Eclipse or IntelliJ IDE projects are provided
 
 ###### Task
 1. Fork this repository (if you don't know how to do that, Google is your friend)
