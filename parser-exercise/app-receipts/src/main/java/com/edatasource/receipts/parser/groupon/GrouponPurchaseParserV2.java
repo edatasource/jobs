@@ -50,18 +50,4 @@ public class GrouponPurchaseParserV2 {
 		
 		return receipt;
 	}
-
-	public static void main(String[] args) {
-		try {
-			byte[] encoded = Files
-					.readAllBytes(Paths
-							.get("./app-receipts/test-data/groupon/valid_v2/V2_regexUpdate1.html"));
-			String HTML = new String(encoded, Charset.defaultCharset());
-			Document doc = Jsoup.parse(HTML);
-			EcommerceReceipt receipt = GrouponPurchaseParserV2.parse(doc);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 }
