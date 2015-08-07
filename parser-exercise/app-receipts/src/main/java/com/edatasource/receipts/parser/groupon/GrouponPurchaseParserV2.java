@@ -66,7 +66,9 @@ public class GrouponPurchaseParserV2 {
 
     private static String prepareAddressString(Document doc) {
         Elements tableData = doc.getElementsContainingOwnText("Shipping address")
-                .get(0)
+                .stream().filter(e -> e.parent().html().matches("<td.*?>Shipping address:</td>"))
+                .findFirst()
+                .get()
                 .parent()
                 .nextElementSibling()
                 .getElementsByTag("td");
