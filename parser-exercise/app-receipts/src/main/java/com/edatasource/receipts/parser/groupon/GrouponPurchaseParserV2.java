@@ -31,9 +31,14 @@ public class GrouponPurchaseParserV2 {
 		EcommerceItem item = new EcommerceItem();
 		item.setDescription(desc);
 		items.add(item);
-		List<EcommerceShipment> shipmentList = new ArrayList<EcommerceShipment>();
-		shipmentList.add(shipment);
-		receipt.setShipments(shipmentList);
+
+		// set address
+		Elements wholeAddress = doc.select("tr:matches(Shipping address:) + tr");
+		Address address = MyAddressParser.parse(wholeAddress);
+		shipment.setShipping(address);
+		
+		// adding shipment
+		receipt.addShipment(shipment);
 		
 		// set subtotal
 		String subtotal = doc.select("td:matchesOwn(Subtotal) + td").text().replace("$", "");
@@ -42,11 +47,6 @@ public class GrouponPurchaseParserV2 {
 		// set total
 		String total = doc.select("td:matchesOwn(Total) + td").text().replace("$", "");
 		receipt.setOrderTotal(Double.parseDouble(total));
-		
-		// set address
-		Elements wholeAddress = doc.select("tr:matches(Shipping address:) + tr");
-		Address address = MyAddressParser.parse(wholeAddress);
-		shipment.setShipping(address);
 		
 		return receipt;
 	}
