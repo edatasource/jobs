@@ -9,7 +9,7 @@ These parsers will parse HTML and text-based email receipts. This project is wel
 
 ##### Key Skills:
 
-- Java 7+
+- Java 8 
 - String manipulation skills
 - Strong CSS selectors
 - Strong RegEx knowledge
