@@ -19,7 +19,7 @@ public class GrouponPurchaseParserTest {
 
 	@Test
 	public void testV2RegexUpdate1() throws Exception {
-		byte[] encoded = Files.readAllBytes(Paths.get("./app-receipts/test-data/groupon/valid_v2/V2_regexUpdate1.html"));
+		byte[] encoded = Files.readAllBytes(Paths.get("./parser-exercise/app-receipts/test-data/groupon/valid_v2/V2_regexUpdate1.html"));
 		String HTML = new String(encoded, Charset.defaultCharset());
 		Document doc = Jsoup.parse(HTML);
 		
