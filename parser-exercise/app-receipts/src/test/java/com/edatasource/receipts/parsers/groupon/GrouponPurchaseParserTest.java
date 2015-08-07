@@ -4,6 +4,7 @@ import com.edatasource.receipts.model.Address;
 import com.edatasource.receipts.model.ecommerce.EcommerceItem;
 import com.edatasource.receipts.model.ecommerce.EcommerceReceipt;
 import com.edatasource.receipts.parser.groupon.GrouponPurchaseParserV2;
+import java.io.File;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Test;
@@ -19,7 +20,9 @@ public class GrouponPurchaseParserTest {
 
 	@Test
 	public void testV2RegexUpdate1() throws Exception {
+            //File f = new File ("C:\\Users\\DELL\\Documents\\EclipseProjects\\jobs\\parser-exercise\\app-receipts\\test-data\\groupon\\valid_v2\\V2_regexUpdate1.html");            
 		byte[] encoded = Files.readAllBytes(Paths.get("./app-receipts/test-data/groupon/valid_v2/V2_regexUpdate1.html"));
+             // byte[] encoded = Files.readAllBytes(Paths.get(f.getAbsolutePath()));
 		String HTML = new String(encoded, Charset.defaultCharset());
 		Document doc = Jsoup.parse(HTML);
 		
