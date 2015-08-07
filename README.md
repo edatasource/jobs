@@ -41,4 +41,4 @@ These parsers will parse HTML and text-based email receipts. This project is wel
 Within the project archive have included some helpful/useful utility classes. 
 - ParserUtil:  Collection of helpful methods used for parsing the HTML document.
 - AddressParser:  Static class which you can pass a full address string and it will return a parsed address object.
-- /docs folder:  Contains the Javadocs for both ParserUtil and AddressParser
+- /doc folder:  Contains the Javadocs for both ParserUtil and AddressParser *(CONSULT THIS)*. 
