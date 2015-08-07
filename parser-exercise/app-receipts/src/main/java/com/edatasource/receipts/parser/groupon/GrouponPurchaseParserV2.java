@@ -12,9 +12,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.edatasource.receipts.helper.ParserUtil;
 import com.edatasource.receipts.model.ecommerce.EcommerceItem;
 import com.edatasource.receipts.model.ecommerce.EcommerceReceipt;
 import com.edatasource.receipts.model.ecommerce.EcommerceShipment;
+import com.edatasource.receipts.parser.AddressParser;
 
 public class GrouponPurchaseParserV2 {
 
@@ -31,6 +33,7 @@ public class GrouponPurchaseParserV2 {
 		} catch (XPathExpressionException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	public static EcommerceReceipt parse(Document doc) throws XPathExpressionException {
@@ -112,9 +115,9 @@ public class GrouponPurchaseParserV2 {
 				 */
 
 				if (element.equals(totalElement)) {
-					receipt.setOrderTotal(Double.parseDouble(element.text().replace("$", "")));
+					receipt.setOrderTotal(ParserUtil.dollarsToDouble(element.text()));
 				} else {
-					receipt.setOrderSubTotal(Double.parseDouble(element.text().replace("$", "")));
+					receipt.setOrderSubTotal(ParserUtil.dollarsToDouble(element.text()));
 				}
 			}
 		}
