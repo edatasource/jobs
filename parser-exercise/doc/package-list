@@ -1,0 +1,8 @@
+com.edatasource.receipts
+com.edatasource.receipts.helper
+com.edatasource.receipts.model
+com.edatasource.receipts.model.ecommerce
+com.edatasource.receipts.model.hash
+com.edatasource.receipts.model.schema.org
+com.edatasource.receipts.model.subscription
+com.edatasource.receipts.parser
