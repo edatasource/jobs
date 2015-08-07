@@ -4,8 +4,12 @@ import com.edatasource.receipts.model.Address;
 import com.edatasource.receipts.model.ecommerce.EcommerceItem;
 import com.edatasource.receipts.model.ecommerce.EcommerceReceipt;
 import com.edatasource.receipts.parser.groupon.GrouponPurchaseParserV2;
+
+import dto.DocumentDto;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.nio.charset.Charset;
@@ -17,7 +21,7 @@ import static org.junit.Assert.assertEquals;
 
 public class GrouponPurchaseParserTest {
 
-	@Test
+	/*@Test
 	public void testV2RegexUpdate1() throws Exception {
 		byte[] encoded = Files.readAllBytes(Paths.get("./app-receipts/test-data/groupon/valid_v2/V2_regexUpdate1.html"));
 		String HTML = new String(encoded, Charset.defaultCharset());
@@ -35,6 +39,15 @@ public class GrouponPurchaseParserTest {
 		assertEquals("Sirius Beauty Sonic Skincare System", item.getDescription());
 		assertEquals(24.0, receipt.getOrderSubTotal(), 0);
  		assertEquals(28.74, receipt.getOrderTotal(), 0);
+	}*/
+	
+	@Test
+	public void testHTMLParser(){
+		DocumentDto documentDto=GrouponPurchaseParserV2.parse("./app-receipts/test-data/groupon/valid_v2/V2_regexUpdate1.html");
+		Assert.assertNotNull("Document is null !",documentDto);
+		Assert.assertNotNull("Document Title is null !", documentDto.getTitle());
+		Assert.assertNotNull("Head Element is null", documentDto.getHeadElements());
+		Assert.assertNotNull("Body Element is null", documentDto.getBodyElements());
 	}
 
 }
