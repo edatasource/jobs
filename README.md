@@ -35,7 +35,8 @@ These parsers will parse HTML and text-based email receipts. This project is wel
     - Your code should be implemented within the provided ```GrouponPurchaseParserV2.java``` class file
 4. A JUnit test, ```GrouponPurchaseParserTest.java``` has been provided to validate your solution passes
 5. Commit and push your code to your repository.
-6. Send us a pull request, we will get back to you.
+6. Send us a pull request, we will get back to you. 
+7. PLEASE INCLUDE A LINK TO YOUR UPWORK PROFILE IN YOUR PULL REQUEST
 
 ###### Useful tools
 Within the project archive have included some helpful/useful utility classes. 
