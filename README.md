@@ -30,7 +30,7 @@ These parsers will parse HTML and text-based email receipts. This project is wel
 ###### Task
 1. Fork this repository (if you don't know how to do that, Google is your friend)
 2. An Eclipse and IntelliJ project file are provided for you
-3. Implement your parsing solution
+3. Implement your parsing solution (source code is found in /parser-exercise/app-receipts)
     - Your solution should parse the ```V2_regexUpdate1.html``` from the provided HTML file
     - Your code should be implemented within the provided ```GrouponPurchaseParserV2.java``` class file
 4. A JUnit test, ```GrouponPurchaseParserTest.java``` has been provided to validate your solution passes
