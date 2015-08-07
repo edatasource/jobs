@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 public class GrouponPurchaseParserV2 {
 
-    private static Pattern itemQuantityPattern = Pattern.compile("\\(x(\\d+)\\)");
+    private static Pattern itemPattern = Pattern.compile("<tr>\\s*<td.*>(.*)</td>\\s*<td.*>\\(x(\\d+)\\)</td>\\s*</tr>");
 
     public static EcommerceReceipt parse(Document doc) throws IOException {
         EcommerceReceipt ecommerceReceipt = new EcommerceReceipt();
@@ -37,7 +37,7 @@ public class GrouponPurchaseParserV2 {
     }
 
     private static Double parseBillingAmount(Document doc, String category) {
-        String dollars = doc.getElementsMatchingOwnText(category).get(0).nextElementSibling().text();
+        String dollars = doc.getElementsMatchingOwnText("^" + category + "$").get(0).nextElementSibling().text();
         return ParserUtil.dollarsToDouble(dollars);
     }
 
@@ -51,13 +51,15 @@ public class GrouponPurchaseParserV2 {
     }
 
     private static List<EcommerceItem> parseItems(Document doc) {
-        return doc.getElementsMatchingOwnText(itemQuantityPattern).stream()
-                .map(element -> {
-                    EcommerceItem item = new EcommerceItem();
-                    item.setQuantity(getItemQuantity(element.text()));
-                    item.setDescription(element.firstElementSibling().text());
-                    return item;
-                }).collect(Collectors.toList());
+        List<EcommerceItem> items = new ArrayList<>();
+        Matcher matcher = itemPattern.matcher(doc.html());
+        while(matcher.find()) {
+            EcommerceItem ecommerceItem = new EcommerceItem();
+            ecommerceItem.setDescription(matcher.group(1).trim());
+            ecommerceItem.setQuantity(new Integer(matcher.group(2)));
+            items.add(ecommerceItem);
+        }
+        return items;
     }
 
     private static Address parseShippingAddress(Document doc) {
@@ -76,14 +78,5 @@ public class GrouponPurchaseParserV2 {
                 .map(Element::text)
                 .collect(Collectors.joining("\n"));
     }
-
-    private static Integer getItemQuantity(String quantity) {
-        Matcher matcher = itemQuantityPattern.matcher(quantity);
-        if (matcher.find()) {
-            return new Integer(matcher.group(1));
-        }
-        return null;
-    }
-
 
 }
