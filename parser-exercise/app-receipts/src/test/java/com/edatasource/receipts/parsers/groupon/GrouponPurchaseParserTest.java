@@ -3,7 +3,9 @@ package com.edatasource.receipts.parsers.groupon;
 import com.edatasource.receipts.model.Address;
 import com.edatasource.receipts.model.ecommerce.EcommerceItem;
 import com.edatasource.receipts.model.ecommerce.EcommerceReceipt;
+import com.edatasource.receipts.model.ecommerce.EcommerceShipment;
 import com.edatasource.receipts.parser.groupon.GrouponPurchaseParserV2;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Test;
@@ -25,8 +27,9 @@ public class GrouponPurchaseParserTest {
 		
 		EcommerceReceipt receipt = GrouponPurchaseParserV2.parse(doc);
 		EcommerceItem item = receipt.getShipments().get(0).getItems().get(0);
-
-		Address address = receipt.getShipping();
+				
+		
+		Address address = receipt.getBilling();
 		assertEquals("12345 Test St", address.getStreetOrBoxInfo());
 		assertEquals("Sun Valley", address.getCity());
 		assertEquals("California", address.getState());
