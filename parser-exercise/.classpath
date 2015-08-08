@@ -20,6 +20,6 @@
 	<classpathentry kind="lib" path="app-receipts/lib/spring-core-3.0.6.RELEASE.jar"/>
 	<classpathentry kind="lib" path="app-receipts/lib/junit-4.8.2.jar"/>
 	<classpathentry kind="lib" path="app-receipts/lib/support-files.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_51"/>
 	<classpathentry kind="output" path="target"/>
 </classpath>
