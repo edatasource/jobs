@@ -12,7 +12,11 @@ import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
+import com.edatasource.receipts.model.Address;
+import com.edatasource.receipts.model.ecommerce.EcommerceItem;
 import com.edatasource.receipts.model.ecommerce.EcommerceReceipt;
+import com.edatasource.receipts.model.ecommerce.EcommerceShipment;
+import com.edatasource.receipts.parser.AddressParser;
 
 import dto.DocumentDto;
 import dto.ElementDto;
@@ -20,7 +24,36 @@ import dto.ElementDto;
 public class GrouponPurchaseParserV2{
 
 	public static EcommerceReceipt parse(Document doc)  {
-		return null;
+		EcommerceReceipt ecommerceReceipt=new EcommerceReceipt();
+		EcommerceShipment ecommerceShipment=new EcommerceShipment();
+		for(Element element:doc.getElementsContainingOwnText("Shipping address:")){
+			Address address=new Address();
+			address.setStreetOrBoxInfo(element.parent().nextElementSibling().child(0).child(0).child(0).child(1).child(0).html());
+			String[] addressParts=element.parent().nextElementSibling().child(0).child(0).child(0).child(3).child(0).html().split(",");
+			address.setCity(addressParts[0]);
+			address.setState(addressParts[1].trim().split(" ")[0]);
+			address.setPostalCode(addressParts[1].trim().split(" ")[1]);
+			ecommerceShipment.setShipping(address);
+		}
+		
+		for(Element element:doc.getElementsContainingOwnText("Order summary:")){
+			EcommerceItem item=new EcommerceItem();
+			item.setDescription(element.parent().parent().child(2).child(0).ownText());
+			item.setQuantity(Integer.parseInt(element.parent().parent().child(2).child(1).ownText().replace("(x", "").replace(")", "")));
+			ecommerceShipment.addItem(item);
+		}
+
+		ecommerceReceipt.addShipment(ecommerceShipment);
+		//Subtotal
+		for(Element element:doc.getElementsContainingOwnText("Subtotal")){
+			ecommerceReceipt.setOrderSubTotal(Double.parseDouble(element.nextElementSibling().ownText().trim().substring(1)));
+		}
+		//Total
+		for(Element element:doc.getElementsContainingOwnText("Total")){
+			ecommerceReceipt.setOrderTotal(Double.parseDouble(element.nextElementSibling().ownText().trim().substring(1)));
+		}
+		
+		return ecommerceReceipt;
 	}
 
 	public static DocumentDto parse(String path) {

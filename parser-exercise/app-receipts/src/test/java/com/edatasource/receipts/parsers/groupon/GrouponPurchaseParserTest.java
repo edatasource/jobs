@@ -21,7 +21,7 @@ import static org.junit.Assert.assertEquals;
 
 public class GrouponPurchaseParserTest {
 
-	/*@Test
+	@Test
 	public void testV2RegexUpdate1() throws Exception {
 		byte[] encoded = Files.readAllBytes(Paths.get("./app-receipts/test-data/groupon/valid_v2/V2_regexUpdate1.html"));
 		String HTML = new String(encoded, Charset.defaultCharset());
@@ -39,7 +39,7 @@ public class GrouponPurchaseParserTest {
 		assertEquals("Sirius Beauty Sonic Skincare System", item.getDescription());
 		assertEquals(24.0, receipt.getOrderSubTotal(), 0);
  		assertEquals(28.74, receipt.getOrderTotal(), 0);
-	}*/
+	}
 	
 	@Test
 	public void testHTMLParser(){
