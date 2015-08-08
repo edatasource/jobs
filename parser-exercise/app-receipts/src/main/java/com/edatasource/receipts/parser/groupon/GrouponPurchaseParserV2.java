@@ -1,14 +1,10 @@
 package com.edatasource.receipts.parser.groupon;
 
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -103,6 +99,8 @@ public class GrouponPurchaseParserV2{
 		Address result = new Address();
 		Element summaryTable = getSummaryTable(doc); 
 		Elements elements = summaryTable.select(PARENT_ELEMENT);
+		//cant use nextsibling cuz is not on the same parent...  
+		//as well we could add some more selectors to match the td > table but it would require the same order..  
 		boolean selectMe = false;
 		Element addressElement = null; 
 		for (Element element : elements){ // we iterate around 20 
@@ -118,8 +116,8 @@ public class GrouponPurchaseParserV2{
 		String streetInfo = addressElement.select("td").get(1).text();
 		String boxInfo = addressElement.select("td").get(2).text(); //supouse this contains box info.
 		String locationInfo = addressElement.select("td").get(3).text();
-		String fName = fullName.substring(0, fullName.indexOf(" "));
-		String lName = fullName.substring(fullName.indexOf(" ") + 1 , fullName.length());
+		String fName = fullName.substring(0, fullName.indexOf(" ")); // this can be replaced by a regex. but the I think complexity increases since regex does a deeper processing of the string. indexOf = o(n)  
+		String lName = fullName.substring(fullName.indexOf(" ") + 1 , fullName.length()); 
 		result.setFirstName(fName.trim());
 		result.setLastName(lName.trim());
 		result.setStreetOrBoxInfo(streetInfo + boxInfo);
@@ -137,12 +135,9 @@ public class GrouponPurchaseParserV2{
 	}
 	
 	public static List<EcommerceShipment> getShipments(Document doc){
-		// here is not clear if we are going to get an array of shippment tables.. 
-		// im considereing only one at the moment but this can be expended. 
-
 		/* 
 		 * Maybe some EcommerceShipment information missing I couldnt decompile the EcommerceShipment class
-		 * Added as much as the api indicated. 
+		 * added items by Rows
 		 * */
 		List<EcommerceShipment> shipments = new ArrayList<EcommerceShipment>();
 		EcommerceShipment es = new EcommerceShipment();
@@ -153,9 +148,10 @@ public class GrouponPurchaseParserV2{
 	}
 	
 	public static List<EcommerceItem> getOrderItems(Document doc){
+		// list of items orederd. 
 		String _method = "getOrderItems";
 		List<EcommerceItem> list = new ArrayList<>();
-		final String PARENT_ELEMENT = "td[style^=padding: 10px 0 10px 20px;]";
+		final String PARENT_ELEMENT = "td[style^=padding: 10px 0 10px 20px;]"; // search for the TDs that start with that style and iterate them  
 		Element summaryTable = getOrderSummaryTable(doc); 
 		Elements elements = summaryTable.select(PARENT_ELEMENT);
 		for (Element e : elements){
@@ -168,7 +164,8 @@ public class GrouponPurchaseParserV2{
 	}
 	
 	
-	public static Element getOrderSummaryTable(Document doc){
+	public static Element getOrderSummaryTable(Document doc){ 
+		// Order summary table 
 		final String PARENT_ELEMENT = "table:contains(Order summary)";
 		Element summaryTable = getSummaryTable(doc); 
 		Element element = summaryTable.select(PARENT_ELEMENT).get(0);
@@ -183,12 +180,11 @@ public class GrouponPurchaseParserV2{
 	 */
 	public static Double getAmountByType(Document doc, String type){
 		String _method = "getAmountByType";
-		Element summaryTable = getOrderSummaryTable(doc).select("td:has(table:matches((?i)"+type+")").first();
-		summaryTable = summaryTable.select("table:matches((?i)"+type+")").first();
-		Element element = summaryTable.select("td:matches((?i)\\b"+type+")").first().nextElementSibling();
+		Element summaryTable = getOrderSummaryTable(doc).select("td:has(table:matches((?i)"+type+")").first(); 	// Get the table of action 
+		summaryTable = summaryTable.select("table:matches((?i)"+type+")").first();								// Get the "search term"  
+		Element element = summaryTable.select("td:matches((?i)\\b"+type+")").first().nextElementSibling();		// Get the next td that contains the amount 
 		Double result = 0d;
-		Double d = Double.valueOf(element.text().replaceAll("[^\\d.,]",""));
-		result = d.doubleValue();
+		result = Double.valueOf(element.text().replaceAll("[^\\d.,]",""));
 		System.out.println(_method + " result : " + result);
 		return result;
 	}
@@ -224,13 +220,5 @@ public class GrouponPurchaseParserV2{
 		}
 		return result;
 	}
-
 	
-	public static void main(String... args) throws Exception {
-		byte[] encoded = Files.readAllBytes(Paths.get("./app-receipts/test-data/groupon/valid_v2/V2_regexUpdate1.html"));
-		String HTML = new String(encoded, Charset.defaultCharset());
-		Document doc = Jsoup.parse(HTML);
-		GrouponPurchaseParserV2.parse(doc);
-	}
-
 }
