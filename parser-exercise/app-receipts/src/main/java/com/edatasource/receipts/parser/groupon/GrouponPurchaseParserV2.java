@@ -10,6 +10,7 @@ import com.edatasource.receipts.model.Address;
 import com.edatasource.receipts.model.ecommerce.EcommerceItem;
 import com.edatasource.receipts.model.ecommerce.EcommerceReceipt;
 import com.edatasource.receipts.model.ecommerce.EcommerceShipment;
+import com.edatasource.receipts.parser.AddressParser;
 
 public class GrouponPurchaseParserV2 {
 
@@ -69,12 +70,7 @@ public class GrouponPurchaseParserV2 {
 
 			// shipping address
 			else if (data.get(i).toLowerCase().contains("shipping address")) {
-				address.setStreetOrBoxInfo(data.get(i + 2));
-				String[] addressInfo = data.get(i + 3).split(",");
-				address.setCity(addressInfo[0]);
-				addressInfo = addressInfo[1].trim().split(" ");
-				address.setState(addressInfo[0]);
-				address.setPostalCode(addressInfo[1]);
+				address = AddressParser.parse(data.get(i+2)+ ", " + data.get(i+3));
 			}
 		} // end of for-loop
 
