@@ -36,5 +36,7 @@ public class GrouponPurchaseParserTest {
 		assertEquals(24.0, receipt.getOrderSubTotal(), 0);
  		assertEquals(28.74, receipt.getOrderTotal(), 0);
 	}
+	
+	
 
 }
