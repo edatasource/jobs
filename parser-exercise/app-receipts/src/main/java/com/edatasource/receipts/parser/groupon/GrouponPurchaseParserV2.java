@@ -26,7 +26,7 @@ public class GrouponPurchaseParserV2 {
 		// all td elements of document
 		Elements elements = doc.getElementsByTag("td");
 
-		// extraction of td elements with no child only
+		// extraction of td elements with zero child only
 		ArrayList<String> data = new ArrayList<String>();
 		for (Element element : elements) {
 			if (element.childNodes().size() == 1)
