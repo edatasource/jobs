@@ -211,7 +211,10 @@ public class GrouponPurchaseParserV2{
 			result = new EcommerceReceipt();
 			result.setOrderNumber(getOrderNumber(doc));
 			result.setBilling(getBilling(doc));
-			result.setShipments(getShipments(doc));
+			//IMPORTANT USE INSTED
+				//result.addShipment(shipment);
+			//INSTED of
+				result.setShipments(getShipments(doc));
 			result.setNumberOfItems(NumberOfItems(doc));
 			result.setOrderSubTotal(getAmountByType(doc, "Subtotal"));
 			result.setOrderTax(getAmountByType(doc, "Tax"));
