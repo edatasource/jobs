@@ -7,6 +7,9 @@ import com.edatasource.receipts.parser.groupon.GrouponPurchaseParserV2;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Test;
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
 
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -36,5 +39,5 @@ public class GrouponPurchaseParserTest {
 		assertEquals(24.0, receipt.getOrderSubTotal(), 0);
  		assertEquals(28.74, receipt.getOrderTotal(), 0);
 	}
-
+	
 }
