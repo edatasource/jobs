@@ -1,18 +1,19 @@
 package com.edatasource.receipts.parsers.groupon;
 
-import com.edatasource.receipts.model.Address;
-import com.edatasource.receipts.model.ecommerce.EcommerceItem;
-import com.edatasource.receipts.model.ecommerce.EcommerceReceipt;
-import com.edatasource.receipts.parser.groupon.GrouponPurchaseParserV2;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static org.junit.Assert.assertEquals;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.junit.Test;
+
+import com.edatasource.receipts.model.Address;
+import com.edatasource.receipts.model.ecommerce.EcommerceItem;
+import com.edatasource.receipts.model.ecommerce.EcommerceReceipt;
+import com.edatasource.receipts.parser.groupon.GrouponPurchaseParserV2;
 
 
 public class GrouponPurchaseParserTest {
