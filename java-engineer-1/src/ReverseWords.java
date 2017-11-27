@@ -1,5 +1,6 @@
 /**
- * Write a recursive function that takes a string as input and returns the reversed string.
+ * Given an input string, reverse the string word by word.  
+ * The user should be able to pass the input string as a paramter to the application.
  */
 public class ReverseWords {
 
