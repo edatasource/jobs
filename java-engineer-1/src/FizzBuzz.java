@@ -5,14 +5,18 @@
  */
 public class FizzBuzz
 {
-	private static int MIN = 1;
-	private static int MAX = 100;
+	private static int MIN = 1;		//The minimum value parsed
+	private static int MAX = 100;	//The maximum value parsed
 
-	public static void main(String[] args) throws Exception
+	/**
+	 * Main class of FizzBuzz, prints "Fizz" for multiples of three, "Buzz"
+	 * for multiples of five, and finally "FizzBuzz" for multiples of both in
+	 * the set between the min and max values, inclusive
+	 * @param args default main argument
+	 */
+	public static void main(String[] args)
 	{
 		System.out.println("Hello from FizzBuzz.java");
-		boolean divThree = false;
-		boolean divFive = false;
 
 		for(int i = MIN; i < MAX; i++)
 		{

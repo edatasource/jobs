@@ -4,9 +4,14 @@
  */
 public class CountingThreading
 {
-	private static int DEFAULT_TIME_STEP = 1000;
+	private static int DEFAULT_TIME_STEP = 1000; 	//Default time for a thread to wait in mills
 
-	public static void main(String[] args) throws Exception
+	/**
+	 * Main method, takes an int from command line and starts that
+	 * number of threads
+	 * @param args contains command line input, a single number
+	 */
+	public static void main(String[] args)
 	{
 		System.out.println("Hello from CountingThreading.java");
 		int input = Integer.parseInt(args[0]);
@@ -19,14 +24,27 @@ public class CountingThreading
 		}
 	}
 
+	/**
+	 * Private class used to create threads
+	 */
 	private static class CountingThreads implements Runnable
 	{
-		int count;
+		int count;	//The number assigned to this thread
+
+		/**
+		 * Constructor initializes a thread with the current count
+		 * @param count The number of assigned to this thread
+		 */
 		CountingThreads(int count)
 		{
 			this.count = count;
 		}
 
+		/**
+		 * Required class run(), called when the thread is instantiated
+		 * The class waits the specified number of mills based on the
+		 * default time step and count of this thread
+		 */
 		public void run()
 		{
 			try
